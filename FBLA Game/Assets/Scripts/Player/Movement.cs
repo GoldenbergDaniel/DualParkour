@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     public Vector2 newScale;
 
     public float speed = 5f;
-    private float duration = 1f;
+    private float duration = 0.5f;
 
     private void Start()
     {
@@ -63,7 +63,7 @@ public class Movement : MonoBehaviour
                 jumpCount = initialJumpCount;
             }
 
-            if (Input.GetKeyDown(jump) && (jumpCount > 1))
+            if (Input.GetKeyDown(jump) && jumpCount > 1)
             {
                 jumpRemember = 0.5f;
                 jumpCount -= 1;
@@ -78,14 +78,14 @@ public class Movement : MonoBehaviour
                 groundedRemember = 0.15f;
             }
 
-            if (Input.GetKeyDown(jump) && (groundedRemember > 0) && (jumpRemember < 0))
+            if (Input.GetKeyDown(jump) && groundedRemember > 0 && jumpRemember < 0)
             {
                 jumpRemember = 0.5f;
                 groundedRemember = 0;
 
                 Jump();
             }
-        }
+        } 
     }
 
     private void FixedUpdate()
@@ -117,9 +117,9 @@ public class Movement : MonoBehaviour
         jumpRemember -= Time.deltaTime;
     }
 
-    private IEnumerator JumpAnimation(Vector2 min, Vector2 max, float duration)
+    private IEnumerator JumpAnimation(Vector2 min, Vector2 max, float dur)
     {
-        float rate = (1f / duration) * speed;
+        float rate = (1f / dur) * speed;
         float i = 0f;
 
         while (i < 1f)

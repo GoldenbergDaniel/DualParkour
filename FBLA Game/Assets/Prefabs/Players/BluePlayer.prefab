@@ -168,6 +168,7 @@ MonoBehaviour:
   initialJumpCount: 1
   newScale: {x: 1.25, y: 0.75}
   speed: 5
+  duration: 0.5
 --- !u!114 &268507254
 MonoBehaviour:
   m_ObjectHideFlags: 0

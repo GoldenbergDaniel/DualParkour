@@ -31,13 +31,13 @@ public class AudioManager : MonoBehaviour
     }
 
     // plays the specified sound
-    public void Play(string name)
+    public void Play(string soundName)
     {
-        Sound sound = Array.Find(sounds, s => s.name == name);
+        Sound sound = Array.Find(sounds, s => s.name == soundName);
 
         if (sound == null)
         {
-            Debug.LogWarning("Sound " + name + " not found!");
+            print("Sound " + name + " not found!");
             return;
         }
 
