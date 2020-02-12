@@ -2,13 +2,13 @@
 
 public class Music : MonoBehaviour
 {
-    public static Music instance;
+    private static Music _instance;
 
     private void Awake()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = this;
+            _instance = this;
         }
         else
         {

@@ -10,8 +10,9 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI deathText;
     public TextMeshProUGUI awardText;
+    public TextMeshProUGUI infoText;
 
-    private int maxCoins = 12;
+    private int maxCoins = 13;
 
     private Animator animator;
     private int levelToLoad;
@@ -44,7 +45,7 @@ public class LevelManager : MonoBehaviour
         }
 
         // When the game is complete, run the game complete function
-        if (SceneManager.GetActiveScene().buildIndex == 7)
+        if (SceneManager.GetActiveScene().buildIndex == 8)
         {
             OnGameComplete();
         }
@@ -76,7 +77,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(levelToLoad);
     }
 
-    // Asssigns the award to the player
+    // Assigns the award to the player
     private void OnGameComplete()
     {
         int coins = Statistics.coins;
@@ -87,32 +88,44 @@ public class LevelManager : MonoBehaviour
         deathText.text = "Deaths: " + deaths;
 
         // Player gets an award based on deaths and coins
-        if (coins >= 12 && deaths == 0)
+        if (coins >= maxCoins && deaths == 0)
         {
             award = "America";
             awardText.color = Color.red;
+            infoText.text = "You demonstrated outstanding skills in agility and teamwork, mastering the art of parkour. " +
+                            "Thus, you are granted the highest award possible, the America award ";
+            infoText.color = Color.red;
         }
-        else if (coins >= 10 && deaths <= 5)
+        else if (coins >= 10 && deaths <= 7)
         {
             award = "Leader";
             awardText.color = Color.blue;
+            infoText.text = "You demonstrated great teamwork and agility skills, which grants you the second highest award, " +
+                            "the Leader award.";
+            infoText.color = Color.blue;
         }
-        else if (coins >= 7 && deaths <= 10)
+        else if (coins >= 7 && deaths <= 13)
         {
             award = "Business";
             awardText.color = Color.green;
+            infoText.text = "You demonstrated alright skills in teamwork and agility, thus granting you the Business award. " +
+                            "Maybe you should practice some more!";
+            infoText.color = Color.green;
         }
-        else if (coins >= 3 || deaths >= 15)
+        else if (coins >= 4 && deaths <= 20)
         {
             award = "Future";
             awardText.color = Color.yellow;
+            infoText.text = "You got the Future award, which is alright, but could have been better. Try working better as a team.";
+            infoText.color = Color.yellow;
         }
         else 
         {
             award = "None";
+            infoText.text = "You did not get any award and should probably try again. Make sure to keep teamwork in mind!";
         }
 
-        // Writes the award on the screen
+        // Displays the award on the screen
         awardText.text = "Award: " + award;
     }
 }

@@ -2,7 +2,7 @@
 
 public class BuffTile : MonoBehaviour
 {
-    public enum BuffType {jumpBuff}
+    public enum BuffType {JumpBuff}
     public BuffType type;
 
     public float multiplier;
@@ -12,12 +12,10 @@ public class BuffTile : MonoBehaviour
     {
         if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
-            switch (type)
+            if (type == BuffType.JumpBuff)
             {
-                case BuffType.jumpBuff:
-                    StartCoroutine(other.GetComponent<Buffs>().JumpBoost(multiplier, duration));
-                    other.GetComponent<Movement>().Jump();
-                    break;
+                StartCoroutine(other.GetComponent<Buffs>().JumpBoost(multiplier, duration));
+                other.GetComponent<Movement>().Jump();
             }
         }
     }
